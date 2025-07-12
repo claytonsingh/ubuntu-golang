@@ -2,7 +2,7 @@
 
 FROM riscv64/ubuntu:jammy
 
-ENV GOPATH="/go" GOLANG_VERSION"1.22.4" GOTOOLCHAIN="local" GOROOT="/usr/local/go" PATH="/usr/local/go/bin:$PATH"
+ENV GOPATH="/go" GOLANG_VERSION="1.22.4" GOTOOLCHAIN="local" GOROOT="/usr/local/go" PATH="/usr/local/go/bin:$PATH"
 
 RUN apt update && \
 apt install -y ca-certificates curl build-essential git && \
