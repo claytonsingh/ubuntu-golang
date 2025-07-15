@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform:
-          - linux/amd64
-          - linux/386
-          - linux/arm64
-          - linux/arm/v6
-          - linux/arm/v7
-          - linux/riscv64
+        include:
+          - { platform: "linux/amd64",   goarch: "amd64"   }
+          - { platform: "linux/386",     goarch: "386"     }
+          - { platform: "linux/arm64",   goarch: "arm64"   }
+          - { platform: "linux/arm/v7",  goarch: "armv7l"  }
+          - { platform: "linux/arm/v5",  goarch: "armv6l"  }
+          - { platform: "linux/riscv64", goarch: "riscv64" }
     permissions:
       packages: write
     steps:
@@ -32,3 +32,5 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: true
           tags: ghcr.io/claytonsingh/ubuntu-golang:latest
+          build-args: |
+            GOARCH=${{ matrix.goarch }}
