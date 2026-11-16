@@ -12,14 +12,14 @@ ARG GOARCH
 
 # Set environment variables
 ENV GOPATH="/go" \
-    GOLANG_VERSION="1.24.5" \
+    GOLANG_VERSION="1.27.4" \
     GOTOOLCHAIN="local" \
     GOROOT="/usr/local/go" \
     PATH="/usr/local/go/bin:$PATH"
 
 # Install dependencies
-RUN apt update && \
-    apt install -y ca-certificates curl build-essential git && \
+RUN apt-get -o APT::Update::Error-Mode=any update && \
+    apt-get install -y ca-certificates curl build-essential git && \
     apt-get clean
 
 # Download and install Go based on GOARCH
